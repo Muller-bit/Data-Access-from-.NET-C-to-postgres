@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Bc6H+17WPPyqxLrBtTc1byGiHFoqjlJjD9mn50aqaOoeJgBGkOaFU9XF/YEladN8TIP+NTxcduH6kb85WiULgg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mulualem\\Desktop\\Postgres_Blazer\\data01\\data01.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mulualem\\.nuget\\packages\\npgsql\\5.0.1.1\\npgsql.5.0.1.1.nupkg.sha512",
+    "C:\\Users\\Mulualem\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

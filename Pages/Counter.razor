@@ -1,0 +1,52 @@
+﻿@page "/counter"
+@using Npgsql
+@using System.Collections.Generic
+@using Data
+<h1>Counter</h1>
+<button class="btn btn-primary" @onclick="GetRunningTasks">Running Tasks </button>
+<hr>
+@if(myTasks.Count>0){
+     int tot=0;
+        <table border="1" class="table">
+            <tr>
+                <td>Id</td>
+                <td>Task</td>
+                <td>On charge</td>
+                <td>Deadline</td> 
+            </tr>
+           @foreach (var tsk in myTasks){
+              tot++;
+             <tr style="font-size:9">
+             <td>@(tsk.task_id)</td>
+             <td>@(tsk.taskname)</td>
+             <td>@(tsk.responsible)</td>
+             <td>@(tsk.deadline)</td> </tr>
+            }
+        </table>      
+            <p> Total of  Running Tasks: @tot </p>       
+    }
+    else
+{
+       <h3>No Running Tasks</h3>
+    
+}
+ @code {
+   private MyPostgresDB myDB = new MyPostgresDB();
+   private List<DBTask> myTasks = new List<DBTask>();
+    private void GetRunningTasks()
+    {
+        myTasks.Clear();
+        string sql ="SELECT";
+        sql += " task_id, taskname, responsible, ";
+        sql +=" to_char(deadline,'DD/MM/YYYY') as deadline";
+        sql +=" FROM task WHERE status='Running';";
+        DBTask tsk;
+        NpgsqlDataReader data = myDB.executeSQL(sql);
+        while(data.Read())
+        {
+                tsk = new DBTask();
+                tsk.set_from_reader(data);
+                myTasks.Add(tsk);
+        }
+    }
+}
